@@ -7,7 +7,7 @@
     <title>Negative Base Calculation</title>
     <meta name="title" content="Negative Base Calculation" />
     <meta name="description" content="A negative base (or negative radix) may be used to construct a non-standard positional numeral system calculation and definition." />
-    <meta name="keywords" content="nonrestoring division calculator, nonrestoring division calculation, nonrestoring, divison, algorithm" />
+    <meta name="keywords" content="nonrestoring division calculator, nonrestoring division calculation, nonrestoring, divison, algorithm,non-restoring" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <meta name="google-site-verification" content="q5_vBQW_mWjG9xK53kokMv7eNy4VNZWG_QOPvWRpjsM" />
     <style>
@@ -17,7 +17,7 @@
     </style>
   </head>
   <body>
-    <a href="https://github.com/omansak/" target="_blank" style="position: absolute; right: 0; top: 0; -webkit-transform: translateZ(0)">
+    <a href="https://github.com/omansak/nonrestoring-division-calculation" target="_blank" style="position: absolute; right: 0; top: 0; -webkit-transform: translateZ(0)">
       <img src="https://raw.githubusercontent.com/aral/fork-me-on-github-retina-ribbons/master/images-after-imageoptim/fork-me-right-grey@2x.png" alt="Fork me" width="149" height="149" />
     </a>
 
@@ -26,6 +26,30 @@
         <header>
           <h1>Nonrestoring Division Calculation</h1>
         </header>
+
+        <section>
+          <p>The division operation is carried away by assuming fractional numbers. The Non-Restoring division algorithm is shown below. Initially R is set equal to N and n is the data width. The operands are in two’s compliment form where MSB bit is the signed bit. In Non-Restoring divider, quotient take the digit set {-1,1}. At the output, a conversion is needed to get the actual output.</p>
+          <p class="text-center">
+            <img src="assets/p1.jpg"/>
+            <i class="d-block">Non-Restoring Division Algorithm Algorithm</i>
+          </p>
+          <p>Non-Restoring algorithm is shown with an example. An example of Non-Restoring division is below for N = 0.5 (0.100) and D = -0.75 (1.010). Here n is equal to 4.</p>
+          <p class="text-center">
+            <img src="assets/p2.jpg"/>
+            <i class="d-block">Non-Restoring Division Algorithm Example</i>
+          </p>
+          <p>
+            Thus the output is 0.q_1q_2q_3 = 0.\bar{1}\bar{1}1. To get the actual output an on-the-fly conversion is needed.
+            <ul>
+              <li>First mask bits for \bar{1} . That is Q1 = 0.001.</li>
+              <li>Then assign Q2 as Q2 = 0.110.</li>
+              <li>Subtract Q2 from Q1 to get the actual result. That is Q = 1.011 (-0.625).</li>
+            </ul>
+          </p>
+        </section>
+
+        <hr class="w-100 my-3" />
+
         <section>
           <div class="row">
             <div class="col-12 col-md-3">
@@ -50,18 +74,52 @@
             </div>
           </div>
         </section>
+        
         <hr class="w-100 my-3" />
+
         <section>
-          <div class="d-flex flex-column flex-md-row">
-            <pre class="w-100" id="logA"></pre>
-            <pre class="w-100" id="logB"></pre>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <img src="assets/a.png" height="100" style="scale: 0.75;" >
+              <h6 class="mt-3">Algorithm A</h6>
+              <pre class="w-100" id="logA"></pre>
+            </div>
+            <div class="col-12 col-md-6">
+              <img src="assets/b.png" height="100" style="max-width: 300px;">
+              <h6 class="mt-3">Algorithm B</h6>
+              <pre class="w-100" id="logB"></pre>
+            </div>
           </div>
         </section>
+
         <section class="border-top border-2 mt-1 py-3">
           <div class="d-flex flex-column flex-md-row">
             <pre class="w-100" id="resultLogA"></pre>
             <pre class="w-100" id="resultLogB"></pre>
           </div>
+        </section>
+
+        <section>
+          <h3>Implementation Code (Javascript)</h3>
+          <ul>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L49" target="_blank">2's Complement</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L82" target="_blank">Two Binary Addition</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L127" target="_blank">Convert Decimal To Binary</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L146" target="_blank">Convert Binary To Decimal</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L175" target="_blank">Shift Binary</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L266" target="_blank">Algorithm A</a></li>
+              <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L365" target="_blank">Algorithm B</a></li>
+          </ul>
+        </section>
+
+        <section>
+            <h3>Credits</h3>
+            <ul>
+                <li><a href="https://github.com/omansak" target="_blank">Osman Şakir 'OMANSAK' Kapar</a></li>
+                <li><a href="email:omansakosk@gmail.com" target="_blank">Email</a></li>
+                <li><a href="https://omansak.blogspot.com" target="_blank">Blog</a></li>
+                <li><a href="https://bilgisayarmuhendislik.iuc.edu.tr/en/_" target="_blank">Istanbul University-Cerrahpasa</a></li>
+            </ul>
         </section>
       </div>
     </main>
