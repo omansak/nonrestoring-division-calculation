@@ -1,0 +1,17 @@
+{
+  "name": "negative-base-calculation",
+  "version": "1.0.0",
+  "description": "Negative Base Calculator",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "deploy": "node gh-pages.js"
+  },
+  "author": "OMANSAK",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.1.1",
+    "live-server": "^1.2.2",
+    "prettier": "^3.3.3"
+  }
+}

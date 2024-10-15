@@ -1,0 +1,13 @@
+{
+  "trailingComma": "es5",
+  "printWidth": 200,
+  "semi": true,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
+}
