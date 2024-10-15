@@ -1,37 +1,33 @@
-# Negative Base Calculation
-A negative base is a numeral system where the base (or radix) is a negative integer. Unlike conventional positive bases (like base 10 or base 2), negative bases can represent numbers in a unique way that allows for the representation of both positive and negative integers without needing a separate sign.
-
-Negative-base positional numeral systems are formed by prefixing nega- keyword to the name of the corresponding positive-base system; such as negadecimal (base −10) corresponds to decimal (base 10), negabinary (base −2) to binary (base 2), negaternary (base −3) to ternary (base 3), and negaquaternary (base −4) to quaternary (base 4).
+# Non-Restoring Division Calculation
+The division operation is carried away by assuming fractional numbers. The Non-Restoring division algorithm is shown below. Initially R is set equal to N and n is the data width. The operands are in two’s compliment form where MSB bit is the signed bit. In Non-Restoring divider, quotient take the digit set {-1,1}. At the output, a conversion is needed to get the actual output.
 
 ### Application
-https://omansak.github.io/negative-base-calculator/
+https://omansak.github.io/nonrestoring-division-calculation/
 
 ### Commands 
 - Install packages : `npm install`
 - Run : `npm run serve`
 - Deploy GH Pages : `npm run deploy`
 
-<section style="overflow: auto;">
-    <h3>References</h3>
+<section>
+    <h3>Implementation Code (Javascript)</h3>
     <ul>
-        <li><a href="https://www.math.uwaterloo.ca/~wgilbert/Research/GilbertNegBases.pdf" target="_blank">https://www.math.uwaterloo.ca/~wgilbert/Research/GilbertNegBases.pdf</a></li>
-        <li><a href="https://www.csee.umbc.edu/~phatak/645/supl/kchap2.ppt" target="_blank">https://www.csee.umbc.edu/~phatak/645/supl/kchap2.ppt</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/Negative_base" target="_blank">https://en.wikipedia.org/wiki/Negative_base</a></li>
-        <li><a href="https://math.stackexchange.com/a/3251611" target="_blank">https://math.stackexchange.com/a/3251611</a></li>
-        <li>
-            <a href="https://stackoverflow.com/questions/9330946/how-to-convert-a-decimal-base-10-to-a-negabinary-base-2" target="_blank">
-                https://stackoverflow.com/questions/9330946/how-to-convert-a-decimal-base-10-to-a-negabinary-base-2
-            </a>
-        </li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L49" target="_blank">2's Complement</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L82" target="_blank">Two Binary Addition</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L127" target="_blank">Convert Decimal To Binary</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L146" target="_blank">Convert Binary To Decimal</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L175" target="_blank">Shift Binary</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L266" target="_blank">Algorithm A</a></li>
+        <li><a href="https://github.com/omansak/nonrestoring-division-calculation/blob/4fdcdcd9d29ec83a75e79454f65d6bef64cd721d/public/app.js#L365" target="_blank">Algorithm B</a></li>
     </ul>
 </section>
 
 <section>
-    <h3>Implementation Code (Javascript)</h3>
+    <h3>Credits</h3>
     <ul>
-        <li><a href="https://github.com/omansak/negative-base-calculator/blob/b434ee51e1caa9a61c18f866ded40f0e95d97064/public/app.js#L11" target="_blank">Convert Any Negative Base To Decimal</a></li>
-        <li><a href="https://github.com/omansak/negative-base-calculator/blob/b434ee51e1caa9a61c18f866ded40f0e95d97064/public/app.js#L23" target="_blank">Convert Decimal To Any Negative Base</a></li>
-        <li><a href="https://github.com/omansak/negative-base-calculator/blob/b434ee51e1caa9a61c18f866ded40f0e95d97064/public/app.js#L45" target="_blank">Addition Two Negation Base Numbers</a></li>
-        <li><a href="https://github.com/omansak/negative-base-calculator/blob/b434ee51e1caa9a61c18f866ded40f0e95d97064/public/app.js#L104" target="_blank">Calculate Negative Base Range Min-Max</a></li>
+        <li><a href="https://github.com/omansak" target="_blank">Osman Şakir 'OMANSAK' Kapar</a></li>
+        <li><a href="email:omansakosk@gmail.com" target="_blank">Email</a></li>
+        <li><a href="https://omansak.blogspot.com" target="_blank">Blog</a></li>
+        <li><a href="https://bilgisayarmuhendislik.iuc.edu.tr/en/_" target="_blank">Istanbul University-Cerrahpasa</a></li>
     </ul>
 </section>

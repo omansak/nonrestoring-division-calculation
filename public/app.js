@@ -199,10 +199,7 @@
 
   const algorithmA = (dividend, divisior, bitLength, iterationCount) => {
     // Properties
-    /**
-     * r(i) = 2r(i-1) -D
-     */
-    let htmlLog = "";
+    let htmlLog = getLineBreak();
     let operationCount = 0;
     let xBinary = convertDecimalToBinary(dividend, bitLength);
     let dBinary = convertDecimalToBinary(divisior, bitLength);
@@ -298,7 +295,7 @@
 
   const algorithmB = (dividend, divisior, bitLength, iterationCount) => {
     let operationCount = 0;
-    let htmlLog = "";
+    let htmlLog = getLineBreak();
     let xBinary = convertDecimalToBinary(dividend, bitLength);
     let dBinary = convertDecimalToBinary(divisior, bitLength);
     let dComplementBinary = complement(dBinary, bitLength);
