@@ -255,7 +255,7 @@
     // }
     htmlLog += log("Q = 0.", q.join(""), " = ", bigQ);
     htmlLog += log(`X = Q * D + R = ${bigQ} * ${divisior} + ${bigR} = `, bigQ * divisior + bigR);
-    htmlLog += log("Execution Time = ~", _algorithmA(dividend, divisior, m, iterationCount), " ms");
+    htmlLog += log("Execution Time = ~", _algorithmA(dividend, divisior, m, iterationCount)[0], " ms");
     htmlLog += log("Operation Count (Addition/Subtraction) = ", operationCount);
     document.getElementById("resultLogA").innerHTML = htmlLog;
   };
@@ -272,6 +272,7 @@
     let m = bitLength;
     let n = iterationCount;
     let q = []; // Quotient
+    let operationCount = 0;
 
     const startTime = performance.now();
     for (let i = 0; i < n; i++) {
@@ -287,10 +288,12 @@
       q.push(qBit);
 
       r = calculate(_2r, qBit == 1 ? dComplementBinary : dBinary, m, 2);
+
+      operationCount++;
     }
     const endTime = performance.now();
 
-    return endTime - startTime;
+    return [endTime - startTime, operationCount];
   };
 
   const algorithmB = (dividend, divisior, bitLength, iterationCount) => {
@@ -354,12 +357,13 @@
     htmlLog += log(`R = r<sub>${n}</sub> * 2<sup>-${n}</sup> = ${r} * 2<sup>-${n}</sup> =`, convertBinaryToDecimal(r), ` * 2<sup>-${n}</sup> = `, bigR);
     htmlLog += log("Q = 0.", q.join(""), " = ", bigQ);
     htmlLog += log(`X = Q * D + R = ${bigQ} * ${divisior} + ${bigR} = `, bigQ * divisior + bigR);
-    htmlLog += log("Execution Time = ~", _algorithmB(dividend, divisior, bitLength, iterationCount), " ms");
+    htmlLog += log("Execution Time = ~", _algorithmB(dividend, divisior, bitLength, iterationCount)[0], " ms");
     htmlLog += log("Operation Count (Addition/Subtraction) = ", operationCount);
     document.getElementById("resultLogB").innerHTML = htmlLog;
   };
 
   const _algorithmB = (dividend, divisior, bitLength, iterationCount) => {
+    let operationCount = 0;
     let xBinary = convertDecimalToBinary(dividend, bitLength);
     let dBinary = convertDecimalToBinary(divisior, bitLength);
     let dComplementBinary = complement(dBinary, bitLength);
@@ -386,13 +390,88 @@
       q.push(qBit);
       if (qBit != 0) {
         r = calculate(_2r, qBit == 1 ? dComplementBinary : dBinary, n, 2);
+        operationCount++;
       } else {
         r = _2r;
       }
     }
     const endTime = performance.now();
 
-    return endTime - startTime;
+    return [endTime - startTime, operationCount];
+  };
+
+  function decimalPlaces(number) {
+    var parts = (number + "").split(".");
+    return parts.length > 1 ? parts[1].length : 0;
+  }
+
+  function wholeNumberMultiple(numbers) {
+    return Math.max(...numbers.map((n) => decimalPlaces(n)));
+  }
+
+  function randomIntInSteps(a, b, step) {
+    function randomInt(a, b) {
+      return Math.floor(Math.random() * (b - a + 1) + a);
+    }
+
+    if (a > b) {
+      // Ensure a is smaller.
+      var c = a;
+      a = b;
+      b = c;
+    }
+
+    step = Math.abs(step);
+
+    return a + randomInt(0, Math.floor((b - a) / step)) * step;
+  }
+
+  /**
+   * 
+   * @param {*} a Min
+   * @param {*} b Max 
+   * @param {*} step Step
+   * @returns Random number
+   */
+  function randomNumber(a, b, step) {
+    var multiple = Math.pow(10, wholeNumberMultiple([a, b]));
+    return randomIntInSteps(a * multiple, b * multiple, step * multiple) / multiple;
+  }
+
+  const performanceAnalysis = () => {
+    // Values
+    const randomCount = 10;
+    const dividend = Array.from({ length: randomCount }).map((i) => randomNumber(0.15, 1000, 0.25)); // X or N
+    const divisior = Array.from({ length: randomCount }).map((i) => randomNumber(0.15, 1000, 0.25)); // D
+    const bitLength = 4; // m
+    const iterationCount = 4; // n
+
+    let totalExecTimeA = 0;
+    let totalExecTimeB = 0;
+    let totalOpCountA = 0;
+    let totalOpCountB = 0;
+    let htmlLog = "";
+
+    for (let i = 0; i < randomCount; i++) {
+      const msA = _algorithmA(dividend[i], divisior[i], bitLength, iterationCount);
+      const msB = _algorithmB(dividend[i], divisior[i], bitLength, iterationCount);
+
+      totalExecTimeA += msA[0];
+      totalExecTimeB += msB[0];
+      totalOpCountA += msA[1];
+      totalOpCountB += msB[1];
+
+      htmlLog += log(`Execution Time X: ${dividend[i]} D: ${divisior[i]}\t\t= ~`, msA[0], " ms");
+      htmlLog += log(`Execution Time X: ${dividend[i]} D: ${divisior[i]}\t\t= ~`, msB[0], " ms");
+    }
+
+    htmlLog += getLineBreak();
+    htmlLog += log(`Total Execution Time  (A)\t\t\t = ~`, totalExecTimeA, " ms");
+    htmlLog += log(`Total Execution Time  (B)\t\t\t = ~`, totalExecTimeB, " ms");
+    htmlLog += log(`Total Operation Count (A)\t\t\t =  `, totalOpCountA);
+    htmlLog += log(`Total Operation Count (B)\t\t\t =  `, totalOpCountB);
+
+    document.getElementById("resultPerformanceLog").innerHTML = htmlLog;
   };
 
   const log = (...data) => {
@@ -405,6 +484,10 @@
   };
 
   const init = () => {
+    document.querySelector("#performance-analysis").addEventListener("click", () => {
+      performanceAnalysis();
+    });
+
     document.querySelector("button").addEventListener("click", () => {
       calc();
     });
