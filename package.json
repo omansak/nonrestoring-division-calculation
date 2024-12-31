@@ -1,7 +1,7 @@
 {
   "name": "negative-base-calculation",
   "version": "1.0.0",
-  "description": "Negative Base Calculator",
+  "description": "Nonrestoring Division Calculation",
   "main": "index.js",
   "scripts": {
     "serve": "node index.js",
